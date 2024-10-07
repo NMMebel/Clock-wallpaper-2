@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baku Time and Date</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000000;
+            font-family: 'Brush Script MT', cursive; /* Ýstediðiniz yazý stili */
+            color: #00fbff;
+            text-align: center;
+        }
+        .time {
+            font-size: 350px;
+        }
+        .date {
+            font-size: 100px; /* Tarih için daha küçük bir font boyutu */
+        }
+        .day {
+            font-size: 50px; /* Haftanýn günü için daha küçük bir font boyutu */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="time" id="time"></div>
+        <div class="date" id="date"></div>
+        <div class="day" id="day"></div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-GB', { hour12: false }); // 24 saat formatýnda saat
+            const dayString = now.toLocaleDateString('en-US', { weekday: 'long' }); // Haftanýn günü
+            const dateString = now.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }); // Tarih dd/mm/yyyy formatýnda
+
+            document.getElementById('time').textContent = timeString;
+            document.getElementById('date').textContent = dateString;
+            document.getElementById('day').textContent = dayString.charAt(0).toUpperCase() + dayString.slice(1); // Ýlk harfi büyük
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime(); // Sayfa yüklendiðinde hemen güncelle
+    </script>
+</body>
+</html>
